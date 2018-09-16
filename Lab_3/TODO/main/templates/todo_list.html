@@ -1,0 +1,39 @@
+{% extends 'header.html' %}
+
+{% block content %}
+
+    <button type="button" class="btn btn-primary">Add task</button>
+    <h2>Tasks to do in List 1</h2>
+
+
+    <ul class="list-group list-group-flush row">
+        <li class="list-group-item col-xs-6" style="height: 60px">
+            <div class="row">
+            <div class="col">Task</div>
+            <div class="col">Created</div>
+            <div class="col">Due on</div>
+            <div class="col">Owner</div>
+            <div class="col">Mark</div>
+            </div>
+        </li>
+
+        {% for task in tasks %}
+
+            <li class="list-group-item col-xs-6" style="height: 60px">
+                <div class="row">
+                <div class="col">{{task}}</div>
+                <div class="col">{{created}}</div>
+                <div class="col">{{due}}</div>
+                <div class="col">{{owner}}</div>
+                <div class="col"><button type="button" class="btn btn-success">{{status}}</button></div>
+                </div>
+            </li>
+
+        {% endfor %}
+
+
+</ul>
+
+
+
+{% endblock %}

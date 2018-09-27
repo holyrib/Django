@@ -16,16 +16,17 @@
         </li>
 
         {% for task in tasks %}
-
-            <li class="list-group-item col-xs-6" style="height: 60px">
-                <div class="row">
-                <div class="col">{{task}}</div>
-                <div class="col">{{created}}</div>
-                <div class="col">{{due}}</div>
-                <div class="col">{{owner}}</div>
-                <div class="col"><button type="button" class="btn btn-info">{{status}}</button></div>
-                </div>
-            </li>
+            {% if task.status is True %}
+                <li class="list-group-item col-xs-6" style="height: 60px">
+                    <div class="row">
+                    <div class="col">{{task.name}}</div>
+                    <div class="col">{{task.created_date}}</div>
+                    <div class="col">{{task.due}}</div>
+                    <div class="col">{{task.owner}}</div>
+                    <div class="col"><button type="button" class="btn btn-info">Undone</button></div>
+                    </div>
+                </li>
+            {% endif %}
 
         {% endfor %}
 

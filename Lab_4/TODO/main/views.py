@@ -30,12 +30,14 @@ def todo(request):
 
     if request.method == "POST":
         form = Taskform(request.POST)
+        tasks = Task.objects.all()
         if form.is_valid():
             post = form.save(commit=False)
             post.owner = request.user
             post.created_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             post.save()
-            return render(request, 'todo_list.html', {'form': form})
+            args = {'form': form, 'tasks' : tasks}
+            return render(request, 'todo_list.html', args)
     else:
         form = Taskform()
         tasks = Task.objects.all()
@@ -44,14 +46,5 @@ def todo(request):
 
 
 def todo_completed(request):
-    tasks = ['lab 1', 'lab 2', 'Watch new episode']
-    created = datetime.datetime.now() - datetime.timedelta(days=3)
-    due = datetime.datetime.now() - datetime.timedelta(days=1)
-    done = {
-        'tasks': tasks,
-        'created': created,
-        'due': due,
-        'owner': 'Admin',
-        'status': 'Not done'
-    }
-    return render(request, 'completed_todo_list.html',done)
+    tasks = Task.objects.all()
+    return render(request, 'completed_todo_list.html',{'tasks' : tasks})

@@ -48,17 +48,17 @@
         </li>
 
         {% for task in tasks %}
-
+            {%if task.status is False%}
             <li class="list-group-item col-xs-6" style="height: 60px">
                 <div class="row">
                 <div class="col">{{task.name}}</div>
                 <div class="col">{{task.created_date}}</div>
                 <div class="col">{{task.due}}</div>
                 <div class="col">{{task.owner}}</div>
-                <div class="col"><button type="button" class="btn btn-success">{{task.status}}</button></div>
+                <div class="col"><button type="button" class="btn btn-success">Done</button></div>
                 </div>
             </li>
-
+            {% endif %}
         {% endfor %}
 
 
